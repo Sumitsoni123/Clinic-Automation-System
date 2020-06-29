@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+
+    <style>
+        .navbar-nav {
+            min-height: 70px;
+            font-size: 50px;
+        }
+
+        .nav-item.active {
+            margin-right: 50px;
+            margin-top: 7px;
+            font-size: 30px;
+        }
+
+        #box, #adp1, #adp2, #adp3, #adp4, #adp5 {
+            box-shadow: 12px 12px 6px grey;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <img src="@Url.Content("~/Logo.png")" width="170" height="70" alt="image">
+                </div>
+                @{
+                    Html.RenderPartial("~/Views/Admin/TopNavPartialView.cshtml");
+                }
+            </div>
+        </nav>
+    </div>
+    <div style="background-color:aliceblue">
+        @RenderBody()
+    </div>
+
+    <div class="p-3 mb-2 bg-primary text-white text-center navbar-fixed-bottom" style="background-color:blue">
+        <h4>
+            This website and its content is copyright of [IBM India] -
+            © [IBM India] [2020]. All rights reserved.
+        </h4>
+    </div>
+
+
+</body>
+</html>

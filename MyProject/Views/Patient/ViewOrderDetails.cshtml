@@ -1,0 +1,56 @@
+﻿@model MyProject.Models.DrugOrderModel
+@{
+    ViewBag.Title = "ViewOrderDetails";
+}
+
+<div class="form-row" style="margin-left:-15px">
+    <div class="col-sm-3">
+        @{
+            Html.RenderPartial("PatientPartialView");
+        }
+    </div>
+    <div class="col-sm-9">
+        <div>
+            <div class="container text-center">
+                <h2><b>This is Your Drug Order Details</b></h2>
+            </div>
+            <br><br><br><br />
+
+            <table class="table table-bordered">
+                <tr>
+                    <th>Drug Id</th>
+                    <th>Drug Name</th>
+                    <th>OrderNumber</th>
+                    <th>Quantity</th>
+                    <th>Order Date</th>
+                    <th>Order Status(Pending)</th>
+                </tr>
+
+               @if(Model.lstDrugOrder.Count >0)
+                {
+                    foreach (var item in Model.lstDrugOrder)
+                    {
+                        <tr>
+                            <td>@item.DrugId</td>
+                            <td>@item.DrugName</td>
+                            <td>@item.OrderNumber</td>
+                            <td>@item.Quantity</td>
+                            <td>@item.OrderDate.ToString("dd-MM-yyyy")</td>
+                            <td>@item.OrderStatus</td>
+                        </tr>                  
+                   }
+               }
+               else
+               {
+                   <tr class="text-center">
+                       <td colspan="6">No Record Found</td>
+                   </tr>
+               }
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+

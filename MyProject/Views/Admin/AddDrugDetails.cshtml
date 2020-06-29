@@ -1,0 +1,108 @@
+﻿@model MyProject.Models.AdminDrugDetailsModel
+@{
+    ViewBag.Title = "AddDrugDetails";
+    Layout = "~/Views/Admin/LayoutPage.cshtml";
+}
+
+<div class="form-row" style="margin-left:-15px">
+    <div class="col-sm-3">
+        @{
+            Html.RenderPartial("SideNavPartialView");
+        }
+    </div>
+    <div class="col-sm-9">
+        <div class="container">
+            <div class="container text-center">
+                <h2><b>Add And Edit Drug Details Here</b></h2>
+            </div>
+            <br><br><br><br />
+
+            @using (Html.BeginForm("PostDrugDetails", "Admin", FormMethod.Post))
+            {
+                @Html.HiddenFor(a => a.DrugId)
+                <div class="form-row">
+                    <div class="col-sm-2">
+                        <label>Drug Name</label>
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(a => a.DrugName, new { @class = "form-control", @maxlength = "30" })
+                    </div>
+
+                    <div class="col-sm-1">
+
+                    </div>
+                    <div class="col-sm-2">
+                        <label>Manufactured Date</label>
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(a => a.ManufactureDate, new { @class = "form-control", @maxlength = "30" })
+                    </div>
+                </div>
+                <br><br><br><br>
+
+
+                <div class="form-row">
+                    <div class="col-sm-2">
+                        <label>Expired Date</label>
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(a => a.ExpiredDate, new { @class = "form-control", @maxlength = "30" })
+                    </div>
+
+                    <div class="col-sm-1"></div>
+
+                    <div class="col-sm-2">
+                        <label>Used For</label>
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(a => a.UsedFor, new { @class = "form-control", @maxlength = "50" })
+                    </div>
+                </div>
+                <br><br><br><br>
+
+                <div class="form-row">
+                    <div class="col-sm-2">
+                        <label>Side Effects</label>
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(a => a.SideEffects, new { @class = "form-control", @maxlength = "30" })
+                    </div>
+
+                    <div class="col-sm-1"></div>
+
+                    <div class="col-sm-2">
+                        <label>Total Quantity Available</label>
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(a => a.TotalQuantityAvailable, new { @class = "form-control", @maxlength = "50" })
+                    </div>
+                </div>
+                <br><br><br><br>
+
+                <div class="form-row">
+                    <div class="col-sm-2">
+                        <label>IsDeleted</label>
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.CheckBoxFor(a => a.IsDeleted)
+                    </div>
+                </div>
+                <br><br><br><br>
+
+                <div class="form-row">
+                    <input type="submit" class="btn btn-primary" value="Save">
+                    <input type="reset" class="btn btn-danger" value="Reset">
+                </div>
+
+                <div class="text-success form-group">
+                    @ViewBag.Message
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+
+
+

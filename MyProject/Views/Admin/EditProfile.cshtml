@@ -1,0 +1,77 @@
+﻿@model MyProject.Models.AdminViewModel
+@{
+    ViewBag.Title = "EditProfile";
+    Layout = "~/Views/Admin/LayoutPage.cshtml";
+}
+
+<div class="form-row" style="margin-left:-15px">
+    <div class="col-sm-3">
+        @{
+            Html.RenderPartial("SideNavPartialView");
+        }
+    </div>
+    <div class="col-sm-9">
+        <div class="container">
+            <div class="container text-center">
+                <h2><b>Edit Your Profile Here</b></h2>
+            </div>
+            <br><br><br><br />
+
+            @using (Html.BeginForm("PostAdminData", "Admin", FormMethod.Post))
+            {
+                <div class="form-row">
+                    <div class="col-sm-2">
+                        <label>First Name</label>
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(a => a.FirstName, new { @class = "form-control", @maxlength = "30" })
+                    </div>
+
+                    <div class="col-sm-1">
+
+                    </div>
+                    <div class="col-sm-2">
+                        <label>Last Name</label>
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(a => a.LastName, new { @class = "form-control", @maxlength = "30" })
+                    </div>
+                </div>
+                <br><br><br><br>
+
+
+                <div class="form-row">
+                    <div class="col-sm-2">
+                        <label>Gender</label>
+                    </div>
+                    <div class="col-sm-3">
+                        Male:   @Html.RadioButtonFor(a => a.Gender, "Male")
+                        Female: @Html.RadioButtonFor(a => a.Gender, "Female")
+                    </div>
+
+                    <div class="col-sm-1"></div>
+
+                    <div class="col-sm-2">
+                        <label>Address</label>
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(a => a.Address, new { @class = "form-control", @maxlength = "50" })
+                    </div>
+                </div>
+                <br><br><br><br>
+
+                <div class="form-row">
+                    <input type="submit" class="btn btn-primary" value="Save">
+                    <input type="reset" class="btn btn-danger" value="Reset">
+                </div>
+
+                <div class="text-success form-group">
+                    @ViewBag.Message
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+

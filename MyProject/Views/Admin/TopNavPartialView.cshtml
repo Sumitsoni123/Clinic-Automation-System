@@ -1,0 +1,19 @@
+﻿@if (Request.IsAuthenticated)
+{
+    <ul class="navbar-nav">        
+        <li class="nav-item active">
+            @Html.ActionLink("LogOut", "LogOut", "Admin", new { area = "" }, new { @class = "navbar-brand" })
+        </li>
+    </ul>
+
+}
+else
+{
+    <ul class="navbar-nav">        
+        <li class="nav-item active">
+            @Html.ActionLink("Login", "Login", "Admin", new { area = "" }, new { @class = "navbar-brand" })
+        </li>        
+    </ul>
+
+}
+

@@ -1,0 +1,61 @@
+﻿@model MyProject.Models.LoginViewModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Admin/LayoutPage.cshtml";
+}
+
+<div class="form-row" style="margin-top:30px">
+    <div class="col-sm-4" style="height:750px">
+        <img src="~/download.jpg" height="100%" width="100%" />
+    </div>
+
+    <div class="col-sm-4">
+        <div><h1><b>Welcome To Admin Login Page</b></h1></div>
+        <div id="box" class="w3-sidebar w3-light-grey w3-bar-block" style="height:415px;background-color:whitesmoke;border:solid">
+            <h2 class="text-center">Login Here</h2>
+            <div class="col-sm-12">
+               @using (Html.BeginForm("AuthenticateLogin", "Admin", FormMethod.Post))
+                {
+                    <div class="form-row" style="margin-top:30px">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-4">
+                            <label>Email ID</label>
+                        </div>
+                        <div class="col-sm-5">
+                            @Html.TextBoxFor(a => a.EmailId, new { @class = "form-control", @maxlength = "30" })
+                            @Html.ValidationMessageFor(a => a.EmailId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <br /><br /><br />
+
+                    <div class="form-row">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-4">
+                            <label>Password</label>
+                        </div>
+                        <div class="col-sm-5">
+                            @Html.PasswordFor(a => a.Password, new { @class = "form-control", @maxlength = "30" })
+                        </div>
+                    </div>
+                    <br /><br /><br />
+
+                    <div class="form-row">
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4 text-center">
+                            <input type="submit" class="btn btn-primary" value="LogIn">
+                        </div>
+                        <div class="col-sm-4"></div>
+                    </div>
+
+                    <div class="text-success form-group">
+                        @ViewBag.Message
+                    </div>
+                }
+            </div>
+        </div>       
+    </div>
+    <div class="col-sm-4" style="height:750px">
+        <img src="~/download.jpg" height="100%" width="100%" />
+    </div>
+</div>
+

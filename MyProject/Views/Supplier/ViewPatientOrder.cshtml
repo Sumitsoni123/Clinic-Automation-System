@@ -1,0 +1,118 @@
+﻿@model MyProject.Models.DrugOrderModel
+@{
+    ViewBag.Title = "ViewPatientOrder";
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<div class="form-row" style="margin-left:-15px">
+    <div class="col-sm-3">
+        @{
+            Html.RenderPartial("SupplierPartialView");
+        }
+    </div>
+    <div class="col-sm-9">
+        <div class="container">
+            <div class="container text-center">
+                <h2><b>Patients Drug Order List</b></h2>
+            </div>
+            <br><br><br><br />
+
+            <table class="table table-bordered">
+                <tr>
+                    <th>Order Id</th>
+                    <th>Order Number</th>
+                    <th>Patient Name</th>
+                    <th>Drug Name</th>
+                    <th>Quantity</th>
+                    <th>Order Date</th>
+                    <th>Address</th>
+                    <th>Decision</th>
+                    <th>Operation</th>
+                </tr>
+
+               @if(Model.lstDrugOrder.Count >0)
+                {
+                    foreach (var item in Model.lstDrugOrder)
+                    {
+                        <tr>
+                            <td>@item.OrderId</td>
+                            <td>@item.OrderNumber</td>
+                            <td>@item.PatientName</td>
+                            <td>@item.DrugName</td>                     
+                            <td>@item.Quantity</td>
+                            <td>@item.OrderDate.ToString("dd-MM-yyyy")</td>
+                            <td>@item.Address</td>
+                        
+                           @using (ProjectEntities db = new ProjectEntities())
+                           {
+                               var getdata = db.PatientOrderDetails.SingleOrDefault(a => a.OrderId == item.OrderId);
+
+                               if (getdata.OrderStatus == "Delivered")
+                               {
+                                    <td colspan="2"><b><u>This Item has been Delivered Succesfully</u></b></td>
+                               }
+                           
+                               else if (getdata.OrderStatus == "Requested" || getdata.OrderStatus == "Dispatched")
+                               {
+                                   <td>
+                                       Dispatch:<input type="radio" id="rdbtn_@item.OrderId" value="Dispatched" name="Decision" />
+                                       Deliver :<input type="radio" id="rdbtn_@item.OrderId" value="Delivered"  name="Decision" />
+                                   </td>
+
+                                   <td>
+                                       <input type="submit" id="btnSave_@item.OrderId" class="btn btn-primary" value="Submit">
+
+                                       <script>
+                                           $(document).ready(function ()
+                                           {
+                                                $("#btnSave_@item.OrderId").click(function ()
+                                                {
+                                                    var decision = $("input[name='Decision']:checked").val()
+
+                                                    var dataValue =
+                                                    {
+                                                        OrderId: @item.OrderId,
+                                                        Decision: decision
+                                                    };
+
+                                                    $.ajax
+                                                        ({
+                                                        url: '@Url.Action("PostOrderDetail", "Supplier")',
+                                                        type: 'post',
+                                                        data: dataValue,
+                                                        dataType: 'json',
+                                                            success: function (d)
+                                                            {
+                                                               alert(d);
+                                                               window.location.href = '@Url.Action("ViewPatientOrder", "Supplier")';
+                                                            },
+                                                            error: function (d)
+                                                            {
+                                                               alert(d);
+                                                           }
+                                                        });
+                                                });
+                                           });
+                                       </script>
+                                   </td>
+                               }
+                            }
+
+                        </tr>
+
+                    }
+                }
+                else
+                {
+                   <tr class="text-center">
+                       <td colspan="6">No Record Found</td>
+                   </tr>
+                }
+            </table>
+
+        </div>
+    </div>
+</div>
+
+
+

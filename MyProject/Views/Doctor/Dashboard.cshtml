@@ -1,0 +1,58 @@
+﻿@model MyProject.Models.DoctorDashboardModel
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+<div class="form-row" style="margin-left:-15px">
+    <div class="col-sm-3">
+        @{ 
+            Html.RenderPartial("DoctorPartialView");
+        }      
+    </div>
+    <div class="col-sm-9">
+        <div>
+            <div class="container text-center">
+                <h2><b>Welcome to Doctors Dashboard</b></h2>
+            </div>
+            <br><br><br><br />
+
+            <div class="form-row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-3">
+                    <div id="ddp1"class="img-circle text-center" style="width:300px;height:300px;padding-top:110px;background-color:lightcoral">
+                        <h3>Total Appointments <b> @Model.TotalAppointment</b></h3>
+                    </div>
+                </div>
+                <div class="col-sm-3"></div>
+                <div class="col-sm-3">
+                    <div id="ddp2"class="img-circle text-center" style="width:300px;height:300px;padding-top:60px;background-color:lightseagreen">
+                        <h3>Requested <b> @Model.Requested</b></h3>
+                        <h3>Approved <b> @Model.Approved</b></h3>
+                        <h3>Rejected <b> @Model.Rejected</b></h3>
+                    </div>
+                </div>
+                <div class="col-sm-1"></div>
+            </div>
+            <br /><br />
+            <div class="form-row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-3">
+                    <div id="ddp3"class="img-circle text-center" style="width:300px;height:300px;padding-top:110px;background-color:yellowgreen">
+                        <h3>Total Messages  <b>@Model.TotalMessage</b> </h3>
+                    </div>
+                </div>
+                <div class="col-sm-3"></div>
+                <div class="col-sm-3">
+                    <div id="ddp4"class="img-circle text-center" style="width:300px;height:300px;padding-top:60px;background-color:mediumpurple">
+                        <h3>Read Messages <b> @Model.Read</b></h3>
+                        <h3>Unread Messages <b> @Model.Unread</b></h3>
+                    </div>
+                </div>
+                <div class="col-sm-1"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

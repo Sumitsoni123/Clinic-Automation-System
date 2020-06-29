@@ -1,0 +1,78 @@
+﻿@model MyProject.Models.DoctorAppointmentModel
+@{
+    ViewBag.Title = "DoctorAppointment";
+}
+
+<div class="form-row" style="margin-left:-15px">
+    <div class="col-sm-3">
+        @{
+            Html.RenderPartial("PatientPartialView");
+        }
+    </div>
+    <div class="col-sm-9">
+        <div>
+            <div class="container text-center">
+                <h2><b>Let's Book Your Personal Appointment</b></h2>
+            </div>
+            <br><br><br><br />
+
+            @using (Html.BeginForm("PostAppointment", "Patient", FormMethod.Post))
+            {
+                <div class="form-row">
+                    <div class="col-sm-2">
+                        <label>Appointment Date</label>
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(a => a.AppointmentDate, new { @class = "form-control", @maxlength = "30" })
+                    </div>
+
+                    <div class="col-sm-2">
+                        <label>Doctor</label>
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.DropDownListFor(a => a.DoctorId, Model.lstDoctor, "Select", new { @class = "form-control" })
+                    </div>
+                </div>
+                <br><br><br><br>
+
+                <div class="form-row">
+                    <div class="col-sm-2">
+                        <label>Subject</label>
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(a => a.Subject, new { @class = "form-control", @maxlength = "50" })
+                    </div>
+                </div>
+                <br><br><br><br>
+
+                <div class="form-row">
+                    <div class="col-sm-2">
+                        <label>Description</label>
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.TextAreaFor(a => a.Description, new { @class = "form-control", @maxlength = "100" })
+                    </div>
+                </div>
+                <br><br><br><br>
+               
+                <div class="form-row">
+                    <div class="col-sm-3">
+                        <input type="submit" class="btn btn-primary" value="Submit">
+                    </div>
+
+                    <div class="col-sm-3">
+                        <input type="reset" class="btn btn-danger" value="Clear">
+                    </div>
+                </div>
+                <br />
+                <div class="text-success text-center form-group">
+                    @ViewBag.Message
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+

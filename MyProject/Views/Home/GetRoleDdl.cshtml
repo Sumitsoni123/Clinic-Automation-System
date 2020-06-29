@@ -1,0 +1,65 @@
+﻿@model MyProject.Models.LoginViewModel
+@{
+    ViewBag.Title = "GetRoleDdl";
+    Layout = "~/Views/Shared/_HomeLayoutPage.cshtml";
+}
+
+<div class="form-row" style="margin-top:20px">
+    <div class="col-sm-8">
+    </div>
+
+    <div class="col-sm-4">
+        <div class="w3-sidebar w3-light-grey w3-bar-block" style="height:415px;background-color:whitesmoke;border:solid">
+            <h2 class="text-center">Register Here</h2>
+            <div class="container">
+                @using (Html.BeginForm("PostMember", "Home", FormMethod.Post))
+                {
+                    <div class="form-row">
+                        <div class="col-sm-2">
+                            <label>Email ID</label>
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.TextBoxFor(a => a.EmailId, new { @class = "form-control", @maxlength = "30" })
+                            @Html.ValidationMessageFor(a => a.EmailId, "", new { @class = "text-danger" })
+                        </div>
+                        <div>
+                            <br /><br /><br />
+
+                        </div>
+                        <div class="col-sm-2">
+                            <label>Password</label>
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.TextBoxFor(a => a.Password, new { @class = "form-control", @maxlength = "30" })
+                        </div>
+                    </div>
+                    <br /><br /><br />
+
+                    <div class="form-row">
+                        <div class="col-sm-2">
+                            <label>Role Name</label>
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.DropDownListFor(a => a.RoleId, Model.RoleName, "Select", new { @class = "form-control", @id = "ddlRole" });
+                        </div>
+                    </div>
+                    <br /><br /><br />
+
+                    <div class="container">
+                        <input type="submit" class="btn btn-primary" value="Register">
+                    </div>
+
+                    <div class="text-success form-group">
+                        @ViewBag.Message
+                    </div>
+                }
+            </div>
+            <br><br>
+        </div>
+
+        <div class="w3-sidebar w3-light-grey w3-bar-block" style="height:415px;background-color:lightgreen;border:dashed">
+            <h2 class="text-center">Current Activities</h2>
+            <br><br>
+        </div>
+    </div>
+</div>

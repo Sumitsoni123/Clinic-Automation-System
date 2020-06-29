@@ -1,0 +1,73 @@
+﻿@model MyProject.Models.SupplierViewModel
+@{
+    ViewBag.Title = "EditProfile";
+}
+
+<div class="form-row" style="margin-left:-15px">
+    <div class="col-sm-3">
+        @{
+            Html.RenderPartial("SupplierPartialView");
+        }
+    </div>
+    <div class="col-sm-9">
+        <div class="container">
+            <div class="container text-center">
+                <h2><b>Employee-Details</b></h2>
+            </div>
+            <br><br><br><br />
+
+            @using (Html.BeginForm("PostSupplierData", "Supplier", FormMethod.Post))
+            {
+                <div class="form-row">
+                    <div class="col-sm-2">
+                        <label>First Name</label>
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(a => a.FirstName, new { @class = "form-control", @maxlength = "30" })
+                    </div>
+                    <div class="col-sm-1">
+
+                    </div>
+                    <div class="col-sm-2">
+                        <label>Last Name</label>
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(a => a.LastName, new { @class = "form-control", @maxlength = "30" })
+                    </div>
+                </div>
+                <br><br><br><br>
+
+
+                <div class="form-row">
+                    <div class="col-sm-2">
+                        <label>Company Name</label>
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(a => a.CompanyName, new { @class = "form-control", @maxlength = "50" })
+                    </div>
+
+                    <div class="col-sm-1"></div>
+
+                    <div class="col-sm-2">
+                        <label>Address</label>
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(a => a.CompanyAddress, new { @class = "form-control", @maxlength = "50" })
+                    </div>
+                </div>
+                <br><br><br><br>
+
+                <div class="form-row">
+                    <input type="submit" class="btn btn-primary" value="Save">
+                    <input type="reset" class="btn btn-danger" value="Reset">
+                </div>
+
+                <div class="text-success form-group">
+                    @ViewBag.Message
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+

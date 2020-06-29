@@ -1,0 +1,54 @@
+﻿@model MyProject.Models.DrugOrderModel
+@{
+    ViewBag.Title = "RaiseDrugOrder";
+}
+
+<div class="form-row" style="margin-left:-15px">
+    <div class="col-sm-3">
+        @{
+            Html.RenderPartial("PatientPartialView");
+        }
+    </div>
+    <div class="col-sm-9">
+        <div>
+            <div class="container text-center">
+                <h2><b>Order Your Drugs</b></h2>
+            </div>
+            <br><br><br><br />
+
+            @using (Html.BeginForm("PostDrugOrder", "Patient", FormMethod.Post))
+            {
+                <div class="form-row">
+                    <div class="col-sm-2">
+                        <label>Choose Drug</label>
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.DropDownListFor(a => a.DrugId, Model.lstDrugName, "Select", new { @class = "form-control" })
+                    </div>
+
+                    <div class="col-sm-2">
+                        <label>Choose Quantity</label>
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(a => a.Quantity, new { @type = "number", @class = "span2", @min = "0" })
+                    </div>
+                </div>
+                <br /><br /><br /><br />
+
+                <div class="form-row">
+                    <div class="col-sm-3">
+                        <input type="submit" class="btn btn-primary" value="Submit">
+                    </div>                    
+                </div>
+                <br />
+                <div class="text-success text-center form-group">
+                    @ViewBag.Message
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+

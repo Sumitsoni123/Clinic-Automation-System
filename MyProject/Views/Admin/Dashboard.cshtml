@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Admin/LayoutPage.cshtml";
+}
+
+<div class="form-row" style="margin-left:-15px">
+    <div class="col-sm-3">
+        @{ 
+            Html.RenderPartial("SideNavPartialView");
+        }     
+    </div>
+    <div class="col-sm-9">
+        <div>
+            <div class="container text-center">
+                <h2><b>Welcome to Admin Dashboard</b></h2>
+            </div>
+            <br><br><br><br />
+
+            <div class="form-row">
+                <div class="col-sm-3">
+                    <div id="adp1"class="img-circle text-center" style="width:300px;height:300px;padding-top:110px;background-color:lightcoral">
+                        <h3>Total Patients <b> @Model.TotalPatient</b></h3>
+                    </div>
+                </div>
+                <div class="col-sm-1"></div>
+                <div class="col-sm-3">
+                    <div id="adp2"class="img-circle text-center" style="width:300px;height:300px;padding-top:110px;background-color:lightseagreen">
+                        <h3>Total Doctors <b> @Model.TotalDoctor</b></h3>                        
+                    </div>
+                </div>
+                <div class="col-sm-1"></div>
+                <div class="col-sm-3">
+                    <div id="adp3"class="img-circle text-center" style="width:300px;height:300px;padding-top:110px;background-color:deepskyblue">
+                        <h3>Total Suppliers <b> @Model.TotalSupplier</b></h3>                        
+                    </div>
+                </div>
+                <div class="col-sm-1"></div>
+            </div>
+            <br /><br />
+            <div class="form-row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-3">
+                    <div id="adp4"class="img-circle text-center" style="width:300px;height:300px;padding-top:60px;background-color:yellowgreen">
+                        <h3>Total Orders  <b>@Model.TotalOrders</b> </h3>
+                        <h3>Assigned To Supplier <b>@Model.Assigned</b> </h3>
+                        <h3>Not Assigned To Supplier <b>@Model.NotAssigned</b> </h3>
+                    </div>
+                </div>
+                <div class="col-sm-1"></div>
+                <div class="col-sm-3">
+                    <div id="adp5"class="img-circle text-center" style="width:300px;height:300px;padding-top:50px;background-color:mediumpurple">
+                        <h3>Total Orders  <b>@Model.TotalOrders</b> </h3>
+                        <h3>Requested <b>@Model.Requested</b></h3>
+                        <h3>Dispatched <b> @Model.Dispatched</b></h3>
+                        <h3>Delivered <b> @Model.Delivered</b></h3>
+                    </div>
+                </div>
+                <div class="col-sm-3"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

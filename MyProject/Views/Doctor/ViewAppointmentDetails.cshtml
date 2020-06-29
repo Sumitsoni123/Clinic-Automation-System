@@ -1,0 +1,109 @@
+﻿@model MyProject.Models.DoctorAppointmentModel
+@{
+    ViewBag.Title = "ViewAppointmentDetails";
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<div class="form-row" style="margin-left:-15px">
+    <div class="col-sm-3">        
+        @{
+            Html.RenderPartial("DoctorPartialView");
+        }
+    </div>
+    <div class="col-sm-9">
+        <div class="container">
+            <div class="container text-center">
+                <h2><b>This is Your Appointment List</b></h2>
+            </div>
+            <br><br><br><br />
+
+            <table class="table table-bordered">
+                <tr>
+                    <th>Patient ID</th>
+                    <th>Patient Name</th>
+                    <th>Subject</th>
+                    <th>Description</th>
+                    <th>Appointment Date</th>
+                    <th>Your Decision</th>
+                    <th>Operation</th>
+                </tr>
+                           
+               @if (Model.lstAppointment.Count > 0)
+                {
+                    foreach (var item in Model.lstAppointment)
+                    {
+                        <tr>
+                             <td>@item.PatientId</td>
+                             <td>@item.PatientName</td>
+                             <td>@item.Subject</td>
+                             <td>@item.Description</td>
+                             <td>@item.AppointmentDate.ToString("dd-MM-yyyy")</td>
+
+                            @using (ProjectEntities db = new ProjectEntities())
+                             {
+                                  var getdata = db.DoctorAppointments.SingleOrDefault(a => a.AppointmentId == item.AppointmentId);
+
+                                  if (getdata.AppointmentStatus == "Approved" || getdata.AppointmentStatus == "Rejected")
+                                  {
+                                      <td colspan="2"><b><u>Appointment has been @getdata.AppointmentStatus</u></b></td>
+                                  }
+                                  else
+                                  {
+                                      <td>
+                                           Approve: <input type="radio" id="rdbtn_@item.AppointmentId" value="Approved" name="Decision" />
+                                           Reject:  <input type="radio" id="rdbtn_@item.AppointmentId" value="Rejected" name="Decision" />
+                                      </td>
+                                      <td>
+                                           <input type="submit" id="btnSave_@item.AppointmentId" class="btn btn-primary" value="Save">
+
+                                           <script>
+                                                      $(document).ready(function ()
+                                                      {
+                                                            $("#btnSave_@item.AppointmentId").click(function ()
+                                                            {
+                                                                var decision = $("input[name='Decision']:checked").val()
+
+                                                                var dataValue =
+                                                                {
+                                                                    AppointmentId: @item.AppointmentId,
+                                                                    DoctorDecision: decision
+                                                                };
+
+                                                                $.ajax
+                                                                    ({
+                                                                    url: '@Url.Action("PostAppointmentDecision", "Doctor")',
+                                                                    type: 'post',
+                                                                    data: dataValue,
+                                                                    dataType: 'json',
+                                                                        success: function (d)
+                                                                        {
+                                                                            alert(d);
+                                                                            window.location.href = '@Url.Action("ViewAppointmentDetails", "Doctor")';
+                                                                        },
+                                                                        error: function (d)
+                                                                        {
+                                                                            alert(d);
+                                                                        }
+                                                                    });
+                                                            });
+                                                      });
+                                           </script>
+                                      </td>
+                                  }
+                             }
+                        </tr>
+                        }
+
+                }
+                else
+                {
+                    <tr class="text-center">
+                        <td colspan="8"><b>No Record Found</b></td>
+                    </tr>
+                }
+            </table>
+                
+            
+        </div>
+    </div>
+</div>

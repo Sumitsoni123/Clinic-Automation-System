@@ -1,0 +1,31 @@
+﻿<div class="w3-sidebar w3-light-grey w3-bar-block" style="height:835px;background-color:darkgrey">
+    <h1 class="text-center">Menu</h1>
+    <br><br>
+    <div class="container text-left col-sm-2" style="font-size:28px">
+        @using (ProjectEntities db = new ProjectEntities())
+         {
+            int mid = Convert.ToInt32(Session["MemberId"]);
+            var getdata = db.Suppliers.FirstOrDefault(a => a.MemberId == mid);
+
+            if (getdata == null)
+            {
+                <ul>
+                    <li>@Html.ActionLink("Dashboard", "GetDashboard", "Supplier")<br><br /></li>
+                    <li>@Html.ActionLink("Edit_Profile", "GetSupplierData", "Supplier")</li>
+                </ul>
+            }
+            else
+            {
+                <ul>
+                    <li>@Html.ActionLink("Dashboard", "GetDashboard", "Supplier")<br><br /></li>
+                    <li>@Html.ActionLink("Edit_Profile", "GetSupplierData", "Supplier")<br><br /></li>
+                    <li>@Html.ActionLink("Change_Password", "ChangePassword", "Supplier")<br><br /></li>
+                    <li>@Html.ActionLink("View_Order_Detail", "ViewPatientOrder", "Supplier")</li>
+                </ul>
+            }
+         }
+
+    </div>
+</div>
+
+

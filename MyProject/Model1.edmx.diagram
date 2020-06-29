@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b756410b396840d5bbb90cea1d41ba5b" Name="Diagram1">
+        <EntityTypeShape EntityType="ProjectModel.Doctor" Width="1.5" PointX="5.25" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectModel.Drug" Width="1.5" PointX="5.25" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectModel.Inbox" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectModel.MemberLogin" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectModel.Patient" Width="1.5" PointX="5.25" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectModel.RoleDetail" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectModel.SpecializedData" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectModel.Supplier" Width="1.5" PointX="5.25" PointY="10.5" IsExpanded="true" />
+        <AssociationConnector Association="ProjectModel.FK_Doctor_MemberLogin" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectModel.FK_Doctor_SpecializedData" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectModel.FK_MemberLogin_RoleDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectModel.FK_Patient_MemberLogin" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectModel.FK_Supplier_MemberLogin" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ProjectModel.DoctorAppointment" Width="1.5" PointX="7.5" PointY="3" />
+        <AssociationConnector Association="ProjectModel.FK_DoctorAppointment_Doctor" />
+        <AssociationConnector Association="ProjectModel.FK_DoctorAppointment_Patient" />
+        <EntityTypeShape EntityType="ProjectModel.PatientOrderDetail" Width="1.5" PointX="7.5" PointY="10.375" />
+        <AssociationConnector Association="ProjectModel.FK_PatientOrderDetails_Drug" />
+        <AssociationConnector Association="ProjectModel.FK_PatientOrderDetails_Patient" />
+        <EntityTypeShape EntityType="ProjectModel.Admin" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="ProjectModel.DrugDelivery" Width="1.5" PointX="9.75" PointY="10.75" />
+        <AssociationConnector Association="ProjectModel.FK_DrugDelivery_PatientOrderDetails" />
+        <AssociationConnector Association="ProjectModel.FK_DrugDelivery_Supplier" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,43 @@
+﻿@model MyProject.Models.SupplierDashboardModel
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+<div class="form-row" style="margin-left:-15px">
+    <div class="col-md-3">
+        @{
+            Html.RenderPartial("SupplierPartialView");
+        }
+    </div>
+    <div class="col-sm-9">
+        <div>
+            <div class="container text-center">
+                <h2><b>Welcome to Supplier Dashboard</b></h2>
+            </div>
+            <br><br><br><br />
+
+            <div class="form-row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-3">
+                    <div id="sdp1"class="img-circle text-center" style="width:300px;height:300px;padding-top:110px;background-color:lightcoral">
+                        <h3>Total Order <b> @Model.TotalOrders</b></h3>
+                    </div>
+                </div>
+                <div class="col-sm-3"></div>
+                <div class="col-sm-3">
+                    <div id="sdp1"class="img-circle text-center" style="width:300px;height:300px;padding-top:60px;background-color:lightseagreen">
+                        <h3>Requested <b> @Model.Requested</b></h3>
+                        <h3>Dispatched <b> @Model.Dispatched</b></h3>
+                        <h3>Delivered <b> @Model.Delivered</b></h3>
+                    </div>
+                </div>
+                <div class="col-sm-1"></div>
+            </div>
+            <br /><br />
+            
+        </div>
+    </div>
+</div>
+
+
+

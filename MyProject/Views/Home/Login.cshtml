@@ -1,0 +1,81 @@
+﻿@model MyProject.Models.LoginViewModel
+@{
+    ViewBag.Title = "Login";
+}
+
+<div class="form-row" style="margin-top:15px">
+    <div class="col-sm-8">
+        <div class="col-lg-12">
+            <div class="table table-bordered" style="height:800px;border-color:sandybrown;border-width:20px">
+                <img src="~/login.jpg" height="100%" width="100%" />
+            </div>
+        </div>        
+    </div>
+
+    <div class="col-sm-4">
+
+        <div class="w3-sidebar w3-light-grey w3-bar-block" style="height:415px;background-color:whitesmoke;border:solid">
+            <h2 class="text-center"><b>Login Here</b></h2>
+            <div class="col-lg-12">
+                @using (Html.BeginForm("AuthenticateLogin", "Home", FormMethod.Post))
+                {
+                    <div class="form-row">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-4">
+                            <label>Email ID</label>
+                        </div>
+                        <div class="col-sm-5">
+                            @Html.TextBoxFor(a => a.EmailId, new { @class = "form-control", @maxlength = "30" })
+                            @Html.ValidationMessageFor(a => a.EmailId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <br /><br /><br />
+
+                    <div class="form-row">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-4">
+                            <label>Password</label>
+                        </div>
+                        <div class="col-sm-5">
+                            @Html.PasswordFor(a => a.Password, new { @class = "form-control", @maxlength = "30" })
+                            @Html.ValidationMessageFor(a => a.Password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <br /><br /><br />
+
+                    <div class="form-row">                       
+                        <div class="col-sm-12 text-center">
+                            <input type="submit" class="btn btn-primary" value="LogIn">
+                        </div>
+                    </div>
+
+                    <div class="form-row">                        
+                        <div class="col-sm-12">
+                            <label>New Member ?</label>
+                            @Html.ActionLink("Please Register Here", "Register", "Home", new { @class = "container" })
+                        </div>
+                    </div>
+                    
+
+                    <div class="text-success form-group">
+                        @ViewBag.Message
+                    </div>
+                }
+            </div>
+            <br><br>
+        </div>
+
+        <div class="w3-sidebar w3-light-grey w3-bar-block" style="height:415px;background-color:lightgreen;border:dashed">
+            <h2 class="text-center"><u><b>Current Activities</b></u></h2>
+            <div class="col-sm-12">
+                <h3>
+                    WHO supports countries to mitigate COVID-19 spread in the Region
+                    As the COVID-19  pandemic spreads, WHO is supporting countries in their containment and mitigation
+                    efforts such as by providing technical guidance, laboratory capacity strengthening for testing,
+                    equipment for hospitals and healthcare workers, and creating awareness and addressing misinformation.
+                </h3>
+            </div>
+            <br><br>
+        </div>
+    </div>
+</div>

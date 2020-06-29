@@ -1,0 +1,85 @@
+﻿@model MyProject.Models.DoctorViewModel
+@{
+    ViewBag.Title = "EditProfile";
+}
+
+<div class="form-row" style="margin-left:-15px">
+    <div class="col-sm-3">
+
+        @{
+            Html.RenderPartial("DoctorPartialView");
+        }
+
+    </div>
+    <div class="col-sm-9">
+        <div class="container">
+            <div class="container text-center">
+                <h2><b>Employee-Details</b></h2>
+            </div>
+            <br><br><br><br />
+
+            @using (Html.BeginForm("PostDoctorData", "Doctor", FormMethod.Post))
+            {
+                <div class="form-row">
+                    <div class="col-sm-2">
+                        <label>First Name</label>
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(a => a.FirstName, new { @class = "form-control", @maxlength = "30" })
+                    </div>
+                    
+                    <div class="col-sm-1"></div>
+                    
+                    <div class="col-sm-2">
+                        <label>Last Name</label>
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(a => a.LastName, new { @class = "form-control", @maxlength = "30" })
+                    </div>
+                </div>
+                <br><br><br><br>
+
+                <div class="form-row">
+                    <div class="col-sm-2">
+                        <label>Total Experience(in years)</label>
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(a => a.TotalExperience, new { @type = "number", @class = "form-control", @min = "0" })
+                    </div>
+
+                    <div class="col-sm-1"></div>
+
+                    <div class="col-sm-2">
+                        <label>Specialization</label>
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.DropDownListFor(a => a.SpecializedId, Model.lstSpecialization, "Select", new { @class = "form-control" })
+                    </div>
+                </div>
+                <br><br><br><br>
+
+                <div class="form-row">                    
+                    <div class="col-sm-2">
+                        <label>Gender</label>
+                    </div>
+                    <div class="col-sm-3">
+                        Male:   @Html.RadioButtonFor(a => a.Gender, "Male")
+                        Female: @Html.RadioButtonFor(a => a.Gender, "Female")
+                    </div>
+                </div>
+                <br><br><br><br>
+
+                <div class="form-row">
+                    <input type="submit" class="btn btn-primary" value="Save">
+                    <input type="reset" class="btn btn-danger" value="Reset">
+                </div>
+
+                <div class="text-success form-group">
+                    @ViewBag.Message
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+

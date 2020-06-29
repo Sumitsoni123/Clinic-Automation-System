@@ -1,0 +1,53 @@
+﻿@model MyProject.Models.DoctorAppointmentModel
+@{
+    ViewBag.Title = "ViewAppointmentDetails";
+}
+
+<div class="form-row" style="margin-left:-15px">
+    <div class="col-sm-3">
+        @{
+            Html.RenderPartial("PatientPartialView");
+        }
+    </div>
+    <div class="col-sm-9">
+        <div>
+            <div class="container text-center">
+                <h2><b>This is Your Appointment List</b></h2>
+            </div>
+            <br><br><br><br />
+
+            <table class="table table-bordered">
+                <tr>
+                    <th>Doctor Name</th>
+                    <th>Subject</th>
+                    <th>Description</th>
+                    <th>Appointment Date</th>
+                    <th>Appointment Status(Pending)</th>
+                </tr>
+
+               @if(Model.lstAppointment.Count >0)
+               {
+                    foreach (var item in Model.lstAppointment)
+                    {
+                        <tr>                            
+                            <td>@item.DoctorName</td>
+                            <td>@item.Subject</td>
+                            <td>@item.Description</td>
+                            <td>@item.AppointmentDate.ToString("dd-MM-yyyy")</td>
+                            <td>@item.AppointmentStatus</td>                        
+                        </tr>                   
+                   }
+               }
+               else
+               {
+                   <tr class="text-center">
+                       <td colspan="5">No Record Found</td>
+                   </tr>
+               }
+
+            </table>
+        </div>
+    </div>
+</div>
+
+

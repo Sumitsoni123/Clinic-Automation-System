@@ -1,0 +1,68 @@
+﻿@model MyProject.Models.AdminDrugDetailsModel
+@{
+    ViewBag.Title = "ViewDrugsDetails";
+    Layout = "~/Views/Admin/LayoutPage.cshtml";
+}
+
+<div class="form-row" style="margin-left:-15px">
+    <div class="col-sm-3">
+        @{
+            Html.RenderPartial("SideNavPartialView");
+        }
+    </div>
+    <div class="col-sm-9">
+        <div class="container">
+            <div class="container text-center">
+                <h2><b>List of Available Drug</b></h2>
+            </div>
+            <br><br><br><br />
+
+            <table class="table table-bordered">
+                <tr>
+                    <th>Drug Id</th>
+                    <th>Drug Name</th>
+                    <th>Manufacture Date</th>
+                    <th>Expired Date</th>
+                    <th>Used For</th>
+                    <th>Side Effects</th>
+                    <th>Total Quantity Available</th>
+                    <th colspan="2">Operation</th>
+                </tr>
+
+               @if(Model.lstdrugdetail.Count >0)
+                {
+                    foreach (var item in Model.lstdrugdetail)
+                    {                  
+                        <tr>
+                            <td>@item.DrugId</td>
+                            <td>@item.DrugName</td>
+                            <td>@item.ManufactureDate.ToString("dd-MM-yyyy")</td>
+                            <td>@item.ExpiredDate.ToString("dd-MM-yyyy")</td>
+                            <td>@item.UsedFor</td>
+                            <td>@item.SideEffects</td>
+                            <td>@item.TotalQuantityAvailable</td>
+                            <td>
+                                <a href="@Url.Action("EditDrugDetails", "Admin", new { id = item.DrugId })">Edit</a>
+                            </td>
+                            <td>
+                                <a href="@Url.Action("DeleteDrugsDetails", "Admin", new { id = item.DrugId })"
+                                   onclick="return confirm('Do u want to delete the record')">Delete</a>
+                            </td>
+                        </tr>                                            
+                    }
+                }
+               else
+               {
+                   <tr class="text-center">
+                       <td colspan="10">No record Found</td>
+                   </tr>
+               }
+
+            </table>
+
+        </div>
+    </div>
+</div>
+
+
+
